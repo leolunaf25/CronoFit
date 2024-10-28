@@ -9,35 +9,90 @@
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
-        <TextView
-            android:id="@+id/tvChronometer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="12:00"
-            android:textSize="62sp"/>
-    </FrameLayout>
+        app:layout_constraintBottom_toBottomOf="@+id/pbBarra"
+        app:layout_constraintEnd_toEndOf="@+id/pbBarra"
+        app:layout_constraintStart_toStartOf="@id/pbBarra"
+        app:layout_constraintTop_toTopOf="@id/pbBarra">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/tvChronometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="62sp"
+        tools:text="12:00" />
+    <ProgressBar
+        android:id="@+id/pbBarraHorizontal"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminate="false"
+        android:max="100"
+        android:minWidth="250dp"
+        android:minHeight="20dp"
+        android:progress="0" />
+</LinearLayout>
 
+    </FrameLayout>
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/pbBarra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:indeterminate="false"
+        android:progress="70"
+        app:indicatorSize="350dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:progress="100"
-        app:indicatorSize="300dp"
-        app:trackThickness="12dp"
-        app:indicatorDirectionCircular="clockwise"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:trackCornerRadius="22dp"
-        app:showAnimationBehavior="inward"
-        app:hideAnimationBehavior="inward"
-        app:showDelay="1000"
-        android:indeterminate="true"
-        />
+        app:trackThickness="22dp" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/pbBarra3"
+        app:layout_constraintEnd_toEndOf="@+id/pbBarra3"
+        app:layout_constraintStart_toStartOf="@id/pbBarra3"
+        app:layout_constraintTop_toTopOf="@id/pbBarra3">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvChronometer2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="62sp"
+                tools:text="12:00" />
+            <ProgressBar
+                android:id="@+id/pbBarraHorizontal2"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="false"
+                android:max="100"
+                android:minWidth="250dp"
+                android:minHeight="20dp"
+                android:progress="0" />
+        </LinearLayout>
+
+    </FrameLayout>
+    <ProgressBar
+        android:id="@+id/pbBarra3"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:indeterminate="false"
+        android:max="100"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:progressDrawable="@drawable/pb_circular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
