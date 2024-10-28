@@ -6,69 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/pbBarra"
-        app:layout_constraintEnd_toEndOf="@+id/pbBarra"
-        app:layout_constraintStart_toStartOf="@id/pbBarra"
-        app:layout_constraintTop_toTopOf="@id/pbBarra">
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:orientation="vertical">
-    <TextView
-        android:id="@+id/tvChronometer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="62sp"
-        tools:text="12:00" />
-    <ProgressBar
-        android:id="@+id/pbBarraHorizontal"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:indeterminate="false"
-        android:max="100"
-        android:minWidth="250dp"
-        android:minHeight="20dp"
-        android:progress="0" />
-</LinearLayout>
-
-    </FrameLayout>
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/pbBarra"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:indeterminate="false"
-        android:progress="70"
-        app:indicatorSize="350dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:trackCornerRadius="22dp"
-        app:trackThickness="22dp" />
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/pbBarra3"
-        app:layout_constraintEnd_toEndOf="@+id/pbBarra3"
-        app:layout_constraintStart_toStartOf="@id/pbBarra3"
-        app:layout_constraintTop_toTopOf="@id/pbBarra3">
+        app:layout_constraintBottom_toBottomOf="@+id/pbBox"
+        app:layout_constraintEnd_toEndOf="@+id/pbBox"
+        app:layout_constraintStart_toStartOf="@id/pbBox"
+        app:layout_constraintTop_toTopOf="@id/pbBox">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/tvChronometer2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="62sp"
                 tools:text="12:00" />
+
             <ProgressBar
                 android:id="@+id/pbBarraHorizontal2"
                 style="?android:attr/progressBarStyleHorizontal"
@@ -83,16 +42,77 @@
         </LinearLayout>
 
     </FrameLayout>
-    <ProgressBar
-        android:id="@+id/pbBarra3"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:indeterminate="false"
-        android:max="100"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:progressDrawable="@drawable/pb_circular"
+
+    <RelativeLayout
+        android:id="@+id/pbBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.lunatcoms.cronofit.AnimatedCircularProgressBar
+            android:id="@+id/pbBarra3"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:indeterminate="false"
+            android:visibility="visible"
+            />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/pbBox2"
+        app:layout_constraintEnd_toEndOf="@+id/pbBox2"
+        app:layout_constraintStart_toStartOf="@id/pbBox2"
+        app:layout_constraintTop_toTopOf="@id/pbBox2">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvChronometer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="62sp"
+                tools:text="12:00" />
+
+            <ProgressBar
+                android:id="@+id/pbBarraHorizontal"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="false"
+                android:max="100"
+                android:minWidth="250dp"
+                android:minHeight="20dp"
+                android:progress="0" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/pbBox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.lunatcoms.cronofit.CreateRing
+            android:id="@+id/pbBarraDefinitive"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:indeterminate="false"
+            android:visibility="visible"
+            />
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
