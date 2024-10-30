@@ -1,12 +1,9 @@
 package com.lunatcoms.cronofit
 
-import android.animation.TimeInterpolator
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.util.AttributeSet
-import android.view.animation.LinearInterpolator
-import android.animation.ValueAnimator
 import android.view.View
 
 class CreateRing @JvmOverloads constructor(
