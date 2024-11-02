@@ -10,10 +10,10 @@
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/pbBox2"
-        app:layout_constraintEnd_toEndOf="@+id/pbBox2"
-        app:layout_constraintStart_toStartOf="@id/pbBox2"
-        app:layout_constraintTop_toTopOf="@id/pbBox2">
+        app:layout_constraintBottom_toBottomOf="@+id/pbBox"
+        app:layout_constraintEnd_toEndOf="@+id/pbBox"
+        app:layout_constraintStart_toStartOf="@id/pbBox"
+        app:layout_constraintTop_toTopOf="@id/pbBox">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -44,7 +44,7 @@
     </FrameLayout>
 
     <RelativeLayout
-        android:id="@+id/pbBox2"
+        android:id="@+id/pbBox"
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:layout_marginHorizontal="22dp"
@@ -62,5 +62,16 @@
             android:visibility="visible"
             />
     </RelativeLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnInit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/pbBox"
+        app:layout_constraintStart_toStartOf="@id/pbBox"
+        app:layout_constraintEnd_toEndOf="@id/pbBox"
+        android:layout_marginTop="22dp"
+        android:text="Iniciar"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,7 +28,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        initUI()
+        binding.btnInit.setOnClickListener {
+            initUI()
+        }
 
 
     }
