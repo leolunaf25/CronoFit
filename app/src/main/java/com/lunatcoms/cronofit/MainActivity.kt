@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.lunatcoms.cronofit.databinding.ActivityMainBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -18,8 +19,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var createRing: CreateRing
 
 
-    private var totalTime:Long = 5000
-    private var progressTarget:Float = 100F
+    private var totalTime: Long = 5000
+    private var progressTarget: Float = 100F
+    private var isPlay: Boolean = true
+
+    private var startTime: Long = 0L
+    private var isPaused: Boolean = false
+    private var job: Job? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,12 +38,15 @@ class MainActivity : AppCompatActivity() {
             initUI()
         }
 
+        binding.pause.setOnClickListener { onPause() }
+        binding.play.setOnClickListener { onResume() }
+
 
     }
 
     private fun initUI() {
         createRing = binding.pbBarraDefinitive
-        setProgress(progressTarget,totalTime)
+        setProgress(progressTarget, totalTime)
         startChronometer()
     }
 
@@ -63,23 +72,41 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startChronometer() {
-        CoroutineScope(Dispatchers.Main).launch {
-            val startTime = System.currentTimeMillis()
+        startTime = System.currentTimeMillis() // Establece el tiempo de inicio al llamar a esta función
 
-            while (true) {
-                val elapsedTime = System.currentTimeMillis() - startTime
+        job = CoroutineScope(Dispatchers.Main).launch {
+            while (isPlay) {
+                if (isPlay) {
+                    val elapsedTime = System.currentTimeMillis() - startTime
 
-                // Calcular el progreso en función del tiempo transcurrido
-                val progress = ((elapsedTime % totalTime) / totalTime.toDouble()) * 100
-                binding.pbBarraHorizontal.progress = progress.toInt()
+                    // Calcular el progreso en función del tiempo transcurrido
+                    val progress = ((elapsedTime % totalTime) / totalTime.toDouble()) * 100
+                    binding.pbBarraHorizontal.progress = progress.toInt()
 
-                // Calcular el tiempo restante en segundos para el cronómetro
-                val timeCurrent = ((totalTime - (elapsedTime % totalTime)) / 1000) + 1
-                binding.tvChronometer.text = (timeCurrent).toString()
+                    // Calcular el tiempo restante en segundos para el cronómetro
+                    val timeCurrent = ((totalTime - (elapsedTime % totalTime)) / 1000) + 1
+                    binding.tvChronometer.text = timeCurrent.toString()
 
-                delay(17L)
+                    delay(17L)
+                }
             }
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        isPlay = false
+        isPaused = true
+        job?.cancel() // Cancela la corrutina al pausar
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (isPaused) {
+            isPlay = true
+            isPaused = false
+            startTime = System.currentTimeMillis() - binding.pbBarraHorizontal.progress * (totalTime / 100) // Reajusta startTime para el tiempo transcurrido
+            startChronometer() // Reanuda la corrutina desde el progreso actual
+        }
+    }
 }
