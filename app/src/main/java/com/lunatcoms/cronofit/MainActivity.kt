@@ -72,23 +72,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startChronometer() {
-        startTime = System.currentTimeMillis() // Establece el tiempo de inicio al llamar a esta función
-
         job = CoroutineScope(Dispatchers.Main).launch {
-            while (isPlay) {
-                if (isPlay) {
-                    val elapsedTime = System.currentTimeMillis() - startTime
+            val startTime = System.currentTimeMillis()
 
-                    // Calcular el progreso en función del tiempo transcurrido
-                    val progress = ((elapsedTime % totalTime) / totalTime.toDouble()) * 100
-                    binding.pbBarraHorizontal.progress = progress.toInt()
+            while (true) {
 
-                    // Calcular el tiempo restante en segundos para el cronómetro
-                    val timeCurrent = ((totalTime - (elapsedTime % totalTime)) / 1000) + 1
-                    binding.tvChronometer.text = timeCurrent.toString()
+                val elapsedTime = System.currentTimeMillis() - startTime
 
-                    delay(17L)
-                }
+                // Calcular el progreso en función del tiempo transcurrido
+                val progress = ((elapsedTime % totalTime) / totalTime.toDouble()) * 100
+                binding.pbBarraHorizontal.progress = progress.toInt()
+
+                // Calcular el tiempo restante en segundos para el cronómetro
+                val timeCurrent = ((totalTime - (elapsedTime % totalTime)) / 1000) + 1
+                binding.tvChronometer.text = (timeCurrent).toString()
+
+                delay(17L)
+
+
             }
         }
     }
@@ -105,8 +106,10 @@ class MainActivity : AppCompatActivity() {
         if (isPaused) {
             isPlay = true
             isPaused = false
-            startTime = System.currentTimeMillis() - binding.pbBarraHorizontal.progress * (totalTime / 100) // Reajusta startTime para el tiempo transcurrido
+            startTime = System.currentTimeMillis() -
+                    (binding.pbBarraHorizontal.progress * totalTime / 100) // Ajusta startTime para el tiempo transcurrido
             startChronometer() // Reanuda la corrutina desde el progreso actual
         }
     }
+
 }
