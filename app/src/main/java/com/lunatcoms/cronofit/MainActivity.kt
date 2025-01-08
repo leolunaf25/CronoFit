@@ -3,6 +3,7 @@ package com.lunatcoms.cronofit
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.animation.LinearInterpolator
 import androidx.appcompat.app.AppCompatActivity
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var createRing: CreateRing
 
 
-    private var totalTime: Long = 5000
+    private var totalTime: Long = 30000
     private var progressTarget: Float = 100F
     private var isPlay: Boolean = true
 
@@ -41,6 +42,11 @@ class MainActivity : AppCompatActivity() {
         binding.pause.setOnClickListener { onPause() }
         binding.play.setOnClickListener { onResume() }
 
+        val actionBar = supportActionBar
+        if (actionBar != null) {
+            // Cambiar el color de fondo de la ActionBar
+            actionBar.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.blueButtons)))
+        }
 
     }
 

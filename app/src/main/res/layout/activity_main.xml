@@ -36,12 +36,34 @@
                 android:layout_gravity="center"
                 android:indeterminate="false"
                 android:max="100"
+                android:progressTint="@color/blueButtons"
                 android:minWidth="250dp"
                 android:minHeight="20dp"
                 android:progress="0" />
         </LinearLayout>
 
     </FrameLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/pbBox">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CronoFit"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:textAlignment="center"
+            android:textSize="46sp"
+            android:textColor="@color/blueButtons"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <RelativeLayout
         android:id="@+id/pbBox"
@@ -52,7 +74,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="50dp"
+        >
 
         <com.lunatcoms.cronofit.CreateRing
             android:id="@+id/pbBarraDefinitive"
@@ -63,18 +87,20 @@
             />
     </RelativeLayout>
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/btnInit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/pbBox"
         app:layout_constraintStart_toStartOf="@id/pbBox"
         app:layout_constraintEnd_toEndOf="@id/pbBox"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="10dp"
         android:text="Iniciar"
+        android:fontFamily="monospace"
+        android:backgroundTint="@color/blueButtons"
         />
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/pause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -82,15 +108,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/play"
         android:text="Pausa"
+        android:layout_marginTop="3dp"
+        android:fontFamily="monospace"
+        android:backgroundTint="@color/blueButtons"
         />
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/btnInit"
         app:layout_constraintStart_toEndOf="@+id/pause"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="play"
+        android:text="Play"
+        android:layout_marginTop="3dp"
+        android:fontFamily="monospace"
+        android:backgroundTint="@color/blueButtons"
+        />
+
+    <Button
+        android:id="@+id/btnSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/pause"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="3dp"
+        android:fontFamily="monospace"
+        android:text="Configurar"
+        android:backgroundTint="@color/blueButtons"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
